@@ -1,4 +1,13 @@
-import { Body, Controller, Inject, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Inject,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { MICOSERVICE_CLIENT } from '../app.constrants';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateTodoDto, UpdateTodoDto } from '@app/shared';
@@ -17,5 +26,10 @@ export class TodoController {
   @Patch()
   async updateToDo(@Body() dto: UpdateTodoDto) {
     return this.todoClient.send({ cmd: 'update-todo' }, dto);
+  }
+
+  @Get()
+  getToDos() {
+    return this.todoClient.send({ cmd: 'get-todos' }, {});
   }
 }

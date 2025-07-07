@@ -7,11 +7,18 @@ import { ToDoController } from './todo.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from '../entities/todo.entity';
 import { UpdateTodoHandler } from './handlers/update-to.handler';
+import { GetTodosHandler } from './handlers/get-todos.handler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Todo]), CqrsModule],
   controllers: [ToDoController],
-  providers: [CreateTodoHandler, NotifyTodoCreatedHandler, TodoSaga , UpdateTodoHandler],
+  providers: [
+    CreateTodoHandler,
+    NotifyTodoCreatedHandler,
+    TodoSaga,
+    UpdateTodoHandler,
+    GetTodosHandler,
+  ],
   exports: [],
 })
 export class TodoModule {}

@@ -1,16 +1,17 @@
 import {
   CreateTodoCommand,
   CreateTodoDto,
+  GetTodosQuery,
   UpdateToDoCommand,
   UpdateTodoDto,
 } from '@app/shared';
-import { Body, Controller, HttpStatus } from '@nestjs/common';
-import { CommandBus } from '@nestjs/cqrs';
+import { Body, Controller, HttpStatus, Param } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('todo')
 export class ToDoController {
-  constructor(private readonly commandBus: CommandBus) {}
+  constructor(private readonly commandBus: CommandBus, private queryBus: QueryBus) {}
 
   @MessagePattern({ cmd: 'create-todo' })
   async handleCreateTodo(@Body() data: CreateTodoDto) {
@@ -29,5 +30,10 @@ export class ToDoController {
     );
     await this.commandBus.execute(command);
     return { status: HttpStatus.OK, data };
+  }
+
+  @MessagePattern({cmd:"get-todos"})
+  async handleGetTodos(){
+    return await this.queryBus.execute(new GetTodosQuery());
   }
 }
