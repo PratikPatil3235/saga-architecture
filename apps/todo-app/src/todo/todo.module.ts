@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from '../entities/todo.entity';
 import { UpdateTodoHandler } from './handlers/update-to.handler';
 import { GetTodosHandler } from './handlers/get-todos.handler';
+import { GetTodoByIdHandler } from './handlers/get-todoiById.handler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Todo]), CqrsModule],
@@ -18,6 +19,7 @@ import { GetTodosHandler } from './handlers/get-todos.handler';
     TodoSaga,
     UpdateTodoHandler,
     GetTodosHandler,
+    GetTodoByIdHandler,
   ],
   exports: [],
 })

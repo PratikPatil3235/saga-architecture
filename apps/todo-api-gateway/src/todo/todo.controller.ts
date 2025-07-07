@@ -29,7 +29,12 @@ export class TodoController {
   }
 
   @Get()
-  getToDos() {
-    return this.todoClient.send({ cmd: 'get-todos' }, {});
+ async getToDos() {
+    return  this.todoClient.send({ cmd: 'get-todos' }, {});
+  }
+  
+  @Get(':id')
+  async getTodoById(@Param('id', ParseUUIDPipe) id: string) {
+    return this.todoClient.send({cmd:'get-todo-byid'}, id);
   }
 }

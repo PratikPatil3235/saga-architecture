@@ -1,3 +1,4 @@
+import { GetTodoByIdQuery } from './../../../../libs/shared/src/queries/get-todo-byId.query';
 import {
   CreateTodoCommand,
   CreateTodoDto,
@@ -11,7 +12,10 @@ import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('todo')
 export class ToDoController {
-  constructor(private readonly commandBus: CommandBus, private queryBus: QueryBus) {}
+  constructor(
+    private readonly commandBus: CommandBus,
+    private queryBus: QueryBus,
+  ) {}
 
   @MessagePattern({ cmd: 'create-todo' })
   async handleCreateTodo(@Body() data: CreateTodoDto) {
@@ -32,8 +36,13 @@ export class ToDoController {
     return { status: HttpStatus.OK, data };
   }
 
-  @MessagePattern({cmd:"get-todos"})
-  async handleGetTodos(){
+  @MessagePattern({ cmd: 'get-todos' })
+  async handleGetTodos() {
     return await this.queryBus.execute(new GetTodosQuery());
+  }
+
+  @MessagePattern({ cmd: 'get-todo-byid' })
+  async handleGetTodoById(id: string) {
+    return await this.queryBus.execute(new GetTodoByIdQuery(id));
   }
 }
