@@ -2,6 +2,7 @@ import { GetTodoByIdQuery } from './../../../../libs/shared/src/queries/get-todo
 import {
   CreateTodoCommand,
   CreateTodoDto,
+  DeleteTodoCommand,
   GetTodosQuery,
   UpdateToDoCommand,
   UpdateTodoDto,
@@ -44,5 +45,10 @@ export class ToDoController {
   @MessagePattern({ cmd: 'get-todo-byid' })
   async handleGetTodoById(id: string) {
     return await this.queryBus.execute(new GetTodoByIdQuery(id));
+  }
+
+  @MessagePattern({ cmd: 'delete-todo' })
+  async handleDeleteTodo(id: string) {
+    return await this.commandBus.execute(new DeleteTodoCommand(id));
   }
 }

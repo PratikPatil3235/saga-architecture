@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Inject,
   Param,
@@ -29,12 +30,17 @@ export class TodoController {
   }
 
   @Get()
- async getToDos() {
-    return  this.todoClient.send({ cmd: 'get-todos' }, {});
+  async getToDos() {
+    return this.todoClient.send({ cmd: 'get-todos' }, {});
   }
-  
+
   @Get(':id')
   async getTodoById(@Param('id', ParseUUIDPipe) id: string) {
-    return this.todoClient.send({cmd:'get-todo-byid'}, id);
+    return this.todoClient.send({ cmd: 'get-todo-byid' }, id);
+  }
+
+  @Delete(':id')
+  async deleteTodo(@Param('id', ParseUUIDPipe) id: string) {
+    return this.todoClient.send({ cmd: 'delete-todo' }, id);
   }
 }

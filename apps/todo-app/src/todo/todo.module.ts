@@ -9,6 +9,7 @@ import { Todo } from '../entities/todo.entity';
 import { UpdateTodoHandler } from './handlers/update-to.handler';
 import { GetTodosHandler } from './handlers/get-todos.handler';
 import { GetTodoByIdHandler } from './handlers/get-todoiById.handler';
+import { DeleteTodoHandler } from './handlers/delete-todo.handler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Todo]), CqrsModule],
@@ -20,6 +21,7 @@ import { GetTodoByIdHandler } from './handlers/get-todoiById.handler';
     UpdateTodoHandler,
     GetTodosHandler,
     GetTodoByIdHandler,
+    DeleteTodoHandler,
   ],
   exports: [],
 })
