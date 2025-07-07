@@ -11,10 +11,10 @@ export class GetTodoByIdHandler implements IQueryHandler<GetTodoByIdQuery> {
     @InjectRepository(Todo) private readonly todoRepo: Repository<Todo>,
   ) {}
 
-  async execute(query: GetTodoByIdQuery){
-    const todo=await this.todoRepo.findOne({where:{id:query.id}});
-    if(!todo){
-        throw new NotFoundException("Todo not found...");
+  async execute(query: GetTodoByIdQuery) {
+    const todo = await this.todoRepo.findOne({ where: { id: query.id } });
+    if (!todo) {
+      throw new NotFoundException('Todo not found...');
     }
     return todo;
   }

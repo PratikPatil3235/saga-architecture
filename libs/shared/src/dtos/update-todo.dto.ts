@@ -13,5 +13,5 @@ export class UpdateTodoDto {
   description: string;
 
   @IsBoolean()
-  status:boolean;
+  status: boolean;
 }

@@ -1,1 +1,1 @@
-export * from './get-todos.query'
+export * from './get-todos.query';

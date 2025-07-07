@@ -4,4 +4,3 @@ export class TodoCreatedEvent {
     public readonly title: string,
   ) {}
 }
-

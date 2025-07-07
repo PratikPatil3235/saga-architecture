@@ -12,9 +12,9 @@ export class DeleteTodoHandler implements ICommandHandler<DeleteTodoCommand> {
   ) {}
 
   async execute(command: DeleteTodoCommand): Promise<any> {
-    const result =await this.repo.delete(command.id);
-    if(result.affected===0){
-        throw new NotFoundException(`Todo Not Found...`);
+    const result = await this.repo.delete(command.id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Todo Not Found...`);
     }
     return result;
   }

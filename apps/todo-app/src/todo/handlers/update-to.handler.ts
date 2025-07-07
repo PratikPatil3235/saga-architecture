@@ -10,7 +10,7 @@ import { NotFoundException } from '@nestjs/common';
 export class UpdateTodoHandler implements ICommandHandler<UpdateToDoCommand> {
   constructor(
     @InjectRepository(Todo) private readonly todoRepo: Repository<Todo>,
-      private eventBus: EventBus,
+    private eventBus: EventBus,
   ) {}
 
   async execute(command: UpdateToDoCommand) {
@@ -20,12 +20,17 @@ export class UpdateTodoHandler implements ICommandHandler<UpdateToDoCommand> {
     }
     todo.description = command.description;
     todo.title = command.title;
-    todo.description=command.description;
+    todo.description = command.description;
     todo.isCompleted = command.status;
 
     await this.todoRepo.save(todo);
-    this.eventBus.publish(new TodoUpdatedEvent(todo.id, todo.title, todo.description, todo.isCompleted));
-
+    this.eventBus.publish(
+      new TodoUpdatedEvent(
+        todo.id,
+        todo.title,
+        todo.description,
+        todo.isCompleted,
+      ),
+    );
   }
-
 }
