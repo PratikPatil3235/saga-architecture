@@ -31,8 +31,8 @@ This project is a complete demonstration of building a distributed microservices
 ### 1. Clone the repo
 
 ```bash
-git clone [https://github.com/your-username/nestjs-todo-saga-cqrs.git](https://github.com/PratikPatil3235/saga-architecture.git)
-cd nestjs-todo-saga-cqrs
+git clone https://github.com/PratikPatil3235/saga-architecture.git
+cd saga-architecture.git
 npm install
 
 ```
