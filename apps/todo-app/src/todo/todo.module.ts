@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { CreateTodoHandler } from './handlers/create-todo.handler';
 import { NotifyTodoCreatedHandler } from './handlers/notify-todo.handler';
-import { TodoSaga } from './sagas/todo.saga';
+import { TodoSaga } from '../sagas/todo.saga';
 import { ToDoController } from './todo.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from '../entities/todo.entity';
