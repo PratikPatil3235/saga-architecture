@@ -1,0 +1,3 @@
+export const MICOSERVICE_CLIENT = {
+  TODO_SERVICE: 'TODO_SERVICE',
+};
