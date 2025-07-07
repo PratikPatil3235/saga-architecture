@@ -11,7 +11,7 @@ import { Todo } from './entities/todo.entity';
       imports: [
         ConfigModule.forRoot({
           isGlobal: true,
-          envFilePath: '.local.env',
+          envFilePath: '.env.local',
         }),
       ],
       useFactory: (configService: ConfigService) => ({
